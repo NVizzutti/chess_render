@@ -48,17 +48,6 @@ class Manager < Employee
 
   def bonus(multiplier)
     salary_total * multiplier
-  #   total_of_subs = 0
-  #   @subordinates.each do |subordinate|
-  #     total_of_subs += subordinate.salary
-  #     if subordinate.is_a?(Manager)
-  #       subordinate.subordinates.each do |sub2|
-  #         total_of_subs += sub2.salary
-  #       end
-  #     end
-  #
-  #   end
-  #   total_of_subs * multiplier
   end
 
 end
