@@ -18,6 +18,10 @@ class Board
     @grid[row][col] = value
   end
 
+  def valid_position?(pos)
+    pos.all? { |el| el.between?(0, 7) }
+  end
+
   def setup
     @grid = Array.new(8) { Array.new(8) }
     @grid.each_with_index do |row, index|
