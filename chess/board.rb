@@ -1,4 +1,5 @@
 require_relative "piece"
+require 'colorize'
 
 class Board
   attr_reader :grid
@@ -33,23 +34,23 @@ class Board
     raise "Illegal move!" unless self[end_pos].nil?
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
-
-  def render
-    print "    0 | 1 | 2 | 3 | 4 | 5 | 6 | 7"
-    @grid.each_with_index do |row, index|
-      print "\n"
-      puts "-----------------------------------"
-      print "#{index} |"
-
-      row.each do |space|
-        if space.is_a?(Piece)
-          print " #{space.name} |"
-        else
-          print '   |'
-        end
-      end
-    end
-  end
+  #
+  # def render
+  #   print "    0 | 1 | 2 | 3 | 4 | 5 | 6 | 7"
+  #   @grid.each_with_index do |row, index|
+  #     print "\n"
+  #     puts "-----------------------------------"
+  #     print "#{index} |"
+  #
+  #     row.each do |space|
+  #       if space.is_a?(Piece)
+  #         print " #{space.name} |"
+  #       else
+  #         print '   |'
+  #       end
+  #     end
+  #   end
+  # end
 
 
 end
