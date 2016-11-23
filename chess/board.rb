@@ -1,5 +1,13 @@
-require_relative "piece"
+# require_relative "./pieces/piece.rb"
+require_relative "./pieces/castle.rb"
+require_relative "./pieces/knight.rb"
+require_relative "./pieces/king.rb"
+require_relative "./pieces/queen.rb"
+require_relative "./pieces/pawn.rb"
+require_relative "./pieces/nullpiece.rb"
+require_relative "./pieces/bishop.rb"
 require 'colorize'
+require 'byebug'
 
 class Board
   attr_reader :grid
@@ -24,11 +32,24 @@ class Board
 
   def setup
     @grid = Array.new(8) { Array.new(8) }
-    @grid.each_with_index do |row, index|
-      if index < 2 || index > 5
-        row.map! { |el| el = Piece.new }
+    @grid.each_with_index do |row, index1|
+      if index1 == 0 || index1 == 7
+        row.each_with_index do |spot, index2|
+          # debugger
+          @grid[index1][index2] = Castle.new(self, [index1, index2]) if index2 == 0 || index2 == 7
+          @grid[index1][index2] = Knight.new(self, [index1, index2]) if index2 == 1 || index2 == 6
+          @grid[index1][index2] = Bishop.new(self, [index1, index2]) if index2 == 2 || index2 == 5
+          @grid[index1][index2] = Queen.new(self, [index1, index2]) if index2 == 3
+          @grid[index1][index2] = King.new(self, [index1, index2]) if index2 == 4
+        end
+      elsif index1 == 1 || index1 == 6
+        row.each_with_index do |spot, index2|
+          @grid[index1][index2] = Pawn.new(self, [index1, index2])
+        end
       else
-        row.map! { |el| el = nil }
+        row.each_with_index do |spot, index2|
+          @grid[index1][index2] = NullPiece.new(self, [index1, index2])
+        end
       end
     end
   end

@@ -16,13 +16,10 @@ class Display
     @board[start_pos], @board[end_pos] = @board[end_pos], @board[start_pos]
   end
 
-  def test_cursor
-    render
+  def test_cursor   #Will become play
     100.times do
-      puts "\n"
-      puts "\n"
       @cursor.get_input
-      p @cursor.cursor_pos
+      system "clear"
       render
     end
   end
@@ -30,13 +27,13 @@ class Display
   def render
     print "    0 | 1 | 2 | 3 | 4 | 5 | 6 | 7"
     @board.grid.each_with_index do |row, index|
+      # debugger 
       print "\n"
       puts "-----------------------------------"
       print "#{index} |"
 
       row.each_with_index do |space, index2|
-        # debugger
-        if space.is_a?(Piece)
+        if !space.is_a?(NullPiece)
           print " #{space.name} |" unless @cursor.cursor_pos == [index, index2]
           print " #{space.name} ".red + '|' if @cursor.cursor_pos == [index, index2]
         else
@@ -52,5 +49,6 @@ end
 if __FILE__ == $PROGRAM_NAME
   board = Board.new
   display = Display.new(board)
+  display.render
   display.test_cursor
 end

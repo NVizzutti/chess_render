@@ -1,4 +1,4 @@
-class King
+class King 
   OFFSETS = [
     [-1, 0],
     [-1, 1],
@@ -35,19 +35,30 @@ end
 
 class Castle
   OFFSETS = [
-    [-1, 0],
-    [0, 1],
-    [1, 0],
-    [0, -1]
+    [-1, -1],
+    [-1, 1],
+    [1, 1],
+    [1, -1]
   ]
 end
 
 class Queen
-  
+  OFFSETS = [
+    [-1, -1],
+    [-1, 1],
+    [1, 1],
+    [1, -1],
+    [-1, -1],
+    [-1, 1],
+    [1, 1],
+    [1, -1]
+  ]
 end
 
 class Pawn
+
 end
 
 class NullPiece
+  OFFSETS = []
 end
